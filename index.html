@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		.enemyall{
+			margin-top: 100px;
+			text-align:center;
+			height: 250px;
+			display: flex;
+			transition: 1s;
+		}
+		.playerall{
+			text-align: center;
+			height: 250px;
+			margin-top: 150px;
+			display: flex;
+			transition: 1s;
+		}
+		.player_img{
+			width:200px;
+			height: 300px;
+			margin-left: auto;
+			margin-right: auto;
+			background-size: 100% 100%;
+			position: relative;
+			transition: 1s;
+		}
+		.player_img2{
+			width:200px;
+			height: 300px;
+			margin-left: auto;
+			margin-right: auto;
+			background-size: 100% 100%;
+			position: relative;
+			transition: 1s;
+		}
+		.player_img3{
+			width:200px;
+			height: 300px;
+			margin-left: auto;
+			margin-right: auto;
+			background-size: 100% 100%;
+			position: relative;
+			transition: 1s;
+		}
+		.enemy_img{
+			width:200px;
+			height: 300px;
+			margin-left: auto;
+			margin-right: auto;
+			background-size: 100% 100%;
+			position: relative;
+			transition: 1s;
+		}
+		.enemy_img2{
+			width:200px;
+			height: 300px;
+			margin-left: auto;
+			margin-right: auto;
+			background-size: 100% 100%;
+			position: relative;
+			transition: 1s;
+		}
+		.enemy_img3{
+			width:200px;
+			height: 300px;
+			margin-left: auto;
+			margin-right: auto;
+			background-size: 100% 100%;
+			position: relative;
+			transition: 1s;
+		}
+		.player_property{
+			position: absolute;
+			top:80%;
+		}
+		.player_property2{
+			position: absolute;
+			top:80%;
+		}
+		.player_property3{
+			position: absolute;
+			top:80%;
+		}
+		.enemy_name{
+			color: white; font-family: Arial; position: absolute; top:0px; left:800px;
+		}
+		.player_name{
+			color: white; font-family: Arial; position: absolute; top:480px; left:890px;
+		}
+		.button{
+			background-image: url(images/btn.png);
+			background-size:100% 100%;
+			height:160px;
+			color: white;
+			border-radius: 45px;
+		}
+		
+		
+	</style>
+</head>
+<body style="background-image: url(images/bg.jpg); background-size: 100%" class="all">
+	<button class="button"><strong>Атака, но тебя тоже бьют</strong></button>
+
+	<div class="enemyall">
+		<h1 class="enemy_name">Какой-то мужик</h1>
+
+		<div class="enemy_img card1">
+			<h2 class="enemy_damage player_property" style="left: 10%;">0</h2>
+			<h2 class="enemy_hp player_property" style="left: 82%;">0</h2>
+		</div>	
+		<div class="enemy_img2 card2">
+			<h2 class="enemy_damage2 player_property2" style="left: 10%;">0</h2>
+			<h2 class="enemy_hp2 player_property2" style="left: 82%;">0</h2>
+		</div>
+		<div class="enemy_img3 card3">
+			<h2 class="enemy_damage3 player_property3" style="left: 10%;">0</h2>
+			<h2 class="enemy_hp3 player_property3" style="left: 82%;">0</h2>
+		</div>
+
+	</div>
+
+	<div class="playerall">
+		<h1 class="player_name">Игрок</h1>
+		<div class="player_img card4">
+			<h2 class="player_damage player_property" style="left: 10%;">0</h2>
+			<h2 class="player_hp player_property" style="left: 82%;">0</h2>
+		</div>
+		<div class="player_img2 card5">
+			<h2 class="player_damage2 player_property2" style="left: 10%;">0</h2>
+			<h2 class="player_hp2 player_property2" style="left: 82%;">0</h2>
+		</div>
+		<div class="player_img3 card6">
+			<h2 class="player_damage3 player_property3" style="left: 10%;">0</h2>
+			<h2 class="player_hp3 player_property3" style="left: 82%;">0</h2>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+	let enemyall=document.querySelector(".enemyall")
+	let playerall=document.querySelector(".playerall")
+	let all=document.querySelector(".all")
+	let btn = document.querySelector(".button")
+
+	let card1=document.querySelector(".card1")
+	let card2=document.querySelector(".card2")
+	let card3=document.querySelector(".card3")
+	let card4=document.querySelector(".card4")
+	let card5=document.querySelector(".card5")
+	let card6=document.querySelector(".card6")
+
+	let enemy_hp=document.querySelector(".enemy_hp")	
+	let player_hp=document.querySelector(".player_hp")
+
+	let enemy_damage=document.querySelector(".enemy_damage")	
+	let player_damage=document.querySelector(".player_damage")
+
+	let enemy_img=document.querySelector(".enemy_img")	
+	let player_img=document.querySelector(".player_img")
+
+	let enemy_hp2=document.querySelector(".enemy_hp2")	
+	let player_hp2=document.querySelector(".player_hp2")
+
+	let enemy_damage2=document.querySelector(".enemy_damage2")	
+	let player_damage2=document.querySelector(".player_damage2")
+
+	let enemy_img2=document.querySelector(".enemy_img2")	
+	let player_img2=document.querySelector(".player_img2")
+
+	let enemy_hp3=document.querySelector(".enemy_hp3")	
+	let player_hp3=document.querySelector(".player_hp3")
+
+	let enemy_damage3=document.querySelector(".enemy_damage3")	
+	let player_damage3=document.querySelector(".player_damage3")
+
+	let enemy_img3=document.querySelector(".enemy_img3")	
+	let player_img3=document.querySelector(".player_img3")
+
+	let player_hpall=0
+	let enemy_hpall=0
+
+	let num1 = Math.random();
+	let random1 = Math.round(num1*40);
+	let num2 = Math.random();
+	let random2 = Math.round(num2*30);
+	let num3 = Math.random();
+	let random3 = Math.round(num3*40);
+	let num4 = Math.random();
+	let random4 = Math.round(num4*30);
+
+	let num7 = Math.random();
+	let random7 = Math.round(num7*40);
+	let num8 = Math.random();
+	let random8 = Math.round(num8*30);
+	let num9 = Math.random();
+	let random9 = Math.round(num9*40);
+	let num10 = Math.random();
+	let random10 = Math.round(num10*30);
+
+	let num11 = Math.random();
+	let random11 = Math.round(num11*40);
+	let num12 = Math.random();
+	let random12 = Math.round(num12*30);
+	let num13 = Math.random();
+	let random13 = Math.round(num13*40);
+	let num14 = Math.random();
+	let random14 = Math.round(num14*30);
+
+	let urls=["url(full-images/1.png)","url(full-images/2.png)","url(full-images/3.png)","url(full-images/4.png)","url(full-images/5.png)","url(full-images/6.png)","url(full-images/7.png)","url(full-images/8.png)","url(full-images/9.png)"]
+	let num5 = Math.random();
+	let randomizer1 = Math.round(num5*8);
+	let num6 = Math.random();
+	let randomizer2 = Math.round(num6*8);
+	let num52 = Math.random();
+	let randomizer3 = Math.round(num52*8);
+	let num62 = Math.random();
+	let randomizer4 = Math.round(num62*8);
+	let num53 = Math.random();
+	let randomizer5 = Math.round(num53*8);
+	let num63 = Math.random();
+	let randomizer6 = Math.round(num63*8);
+
+
+	let enemy = {
+		url : urls[randomizer1],
+		hp : random1,
+		damage : random2,
+	}
+	let player = {
+		url : urls[randomizer2],
+		hp : random3,
+		damage : random4,
+	}
+
+	let enemy2 = {
+		url : urls[randomizer3],
+		hp : random7,
+		damage : random8,
+	}
+	let player2 = {
+		url : urls[randomizer4],
+		hp : random9,
+		damage : random10,
+	}
+
+	let enemy3 = {
+		url : urls[randomizer5],
+		hp : random11,
+		damage : random12,
+	}
+	let player3 = {
+		url : urls[randomizer6],
+		hp : random13,
+		damage : random14,
+	}
+
+	enemy_img.style.backgroundImage = player.url;
+	player_img.style.backgroundImage = enemy.url;
+
+	enemy_damage.innerHTML = enemy.damage;
+	enemy_hp.innerHTML = enemy.hp;
+
+	player_damage.innerHTML = player.damage;
+	player_hp.innerHTML = player.hp;
+
+	enemy_img2.style.backgroundImage = player2.url;
+	player_img2.style.backgroundImage = enemy2.url;
+
+	enemy_damage2.innerHTML = enemy2.damage;
+	enemy_hp2.innerHTML = enemy2.hp;
+
+	player_damage2.innerHTML = player2.damage;
+	player_hp2.innerHTML = player2.hp;
+
+	enemy_img3.style.backgroundImage = player3.url;
+	player_img3.style.backgroundImage = enemy3.url;
+
+	enemy_damage3.innerHTML = enemy3.damage;
+	enemy_hp3.innerHTML = enemy3.hp;
+
+	player_damage2.innerHTML = player3.damage;
+	player_hp3.innerHTML = player3.hp;
+
+	function attack(){
+		enemy.hp=enemy.hp-player.damage
+		enemy_hp.innerHTML=enemy.hp
+
+		player.hp=player.hp-enemy.damage
+		player_hp.innerHTML=player.hp
+
+		enemy2.hp=enemy2.hp-player2.damage
+		enemy_hp2.innerHTML=enemy2.hp
+
+		player2.hp=player2.hp-enemy2.damage
+		player_hp2.innerHTML=player2.hp
+
+		enemy3.hp=enemy3.hp-player3.damage
+		enemy_hp2.innerHTML=enemy2.hp
+
+		player3.hp=player3.hp-enemy3.damage
+		player_hp3.innerHTML=player3.hp
+
+		player_hpall=player.hp+player2.hp
+		enemy_hpall=enemy.hp+enemy2.hp
+
+		if(enemy_hpall<player_hpall){
+			alert("Победил игрок")
+			enemyall.style.opacity="0"
+		}
+		if(player_hpall<enemy_hpall){
+			alert("Вы проиграли")
+			playerall.style.opacity="0"
+		}
+		if(enemy.hp<0){
+			card1.style.opacity="0"
+		}
+		if(enemy2.hp<0){
+			card2.style.opacity="0"
+		}
+		if(enemy3.hp<0){
+			card3.style.opacity="0"
+		}
+		if(player.hp<0){
+			card4.style.opacity="0"
+		}
+		if(player2.hp<0){
+			card5.style.opacity="0"
+		}
+		if(player3.hp<0){
+			card6.style.opacity="0"
+		}
+	}
+	btn.onclick=function() {
+		attack()
+	}
+	</script>
+</body>
+</html>
